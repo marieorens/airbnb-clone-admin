@@ -17,6 +17,15 @@ export type Database = {
           avatar_url: string | null;
           role: "guest" | "host" | "admin";
           is_host: boolean;
+          phone: string | null;
+          whatsapp: string | null;
+          country_of_residence: string | null;
+          city_of_residence: string | null;
+          country_of_origin: string | null;
+          account_purpose: string[];
+          preferred_contact: "email" | "phone" | "whatsapp";
+          bio: string | null;
+          profile_completed_at: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -27,6 +36,15 @@ export type Database = {
           avatar_url?: string | null;
           role?: "guest" | "host" | "admin";
           is_host?: boolean;
+          phone?: string | null;
+          whatsapp?: string | null;
+          country_of_residence?: string | null;
+          city_of_residence?: string | null;
+          country_of_origin?: string | null;
+          account_purpose?: string[];
+          preferred_contact?: "email" | "phone" | "whatsapp";
+          bio?: string | null;
+          profile_completed_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -36,6 +54,15 @@ export type Database = {
           avatar_url?: string | null;
           role?: "guest" | "host" | "admin";
           is_host?: boolean;
+          phone?: string | null;
+          whatsapp?: string | null;
+          country_of_residence?: string | null;
+          city_of_residence?: string | null;
+          country_of_origin?: string | null;
+          account_purpose?: string[];
+          preferred_contact?: "email" | "phone" | "whatsapp";
+          bio?: string | null;
+          profile_completed_at?: string | null;
           updated_at?: string;
         };
         Relationships: [];
@@ -53,6 +80,27 @@ export type Database = {
           latitude: number | null;
           longitude: number | null;
           price_per_night: number;
+          asset_type:
+            | "short_stay"
+            | "house_rent"
+            | "house_sale"
+            | "land_sale"
+            | "commercial_rent"
+            | "commercial_sale"
+            | "other";
+          transaction_type: "booking" | "rent" | "sale" | "lead";
+          currency: string;
+          sale_price: number | null;
+          monthly_rent: number | null;
+          area_sqm: number | null;
+          land_title_status: string | null;
+          property_condition: string | null;
+          available_from: string | null;
+          address_details: string | null;
+          contact_name: string | null;
+          contact_phone: string | null;
+          contact_whatsapp: string | null;
+          contact_email: string | null;
           guest_count: number;
           room_count: number;
           bathroom_count: number;

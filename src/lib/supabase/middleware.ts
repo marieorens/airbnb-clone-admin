@@ -5,7 +5,14 @@ import { getSupabasePublicKey, getSupabaseUrl } from "./config";
 import type { Database } from "@/types/supabase";
 
 export async function updateSession(request: NextRequest) {
-  let response = NextResponse.next({ request });
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-pathname", request.nextUrl.pathname);
+  requestHeaders.set("x-search", request.nextUrl.searchParams.toString());
+  let response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
 
   const supabase = createServerClient<Database>(
     getSupabaseUrl(),
@@ -17,7 +24,11 @@ export async function updateSession(request: NextRequest) {
         },
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
-          response = NextResponse.next({ request });
+          response = NextResponse.next({
+            request: {
+              headers: requestHeaders,
+            },
+          });
           cookiesToSet.forEach(({ name, value, options }) => {
             response.cookies.set(name, value, options);
           });

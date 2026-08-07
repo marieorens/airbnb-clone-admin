@@ -72,6 +72,8 @@ export async function updateListingStatus(
   });
 
   revalidatePath("/");
+  revalidatePath("/listings");
+  revalidatePath("/audit");
 }
 
 export async function updateBookingStatus(
@@ -97,4 +99,31 @@ export async function updateBookingStatus(
   });
 
   revalidatePath("/");
+  revalidatePath("/bookings");
+  revalidatePath("/payments");
+  revalidatePath("/audit");
+}
+
+export async function promoteUserToAdmin(userId: string) {
+  const user = await requireAdmin();
+  const admin = createAdminClient();
+
+  const { error } = await admin
+    .from("profiles")
+    .update({ role: "admin", updated_at: new Date().toISOString() })
+    .eq("id", userId);
+
+  if (error) throw new Error(error.message);
+
+  await logAdminAction({
+    adminId: user.id,
+    action: "profile.role.promote_admin",
+    targetTable: "profiles",
+    targetId: userId,
+    metadata: { role: "admin" },
+  });
+
+  revalidatePath("/");
+  revalidatePath("/users");
+  revalidatePath("/audit");
 }

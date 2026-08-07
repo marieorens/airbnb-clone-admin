@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,6 +12,105 @@
 body {
   color: var(--foreground);
   background: var(--background);
+  font-family: "Poppins", var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.admin-theme-scope,
+.admin-theme-scope *,
+.admin-route-loading,
+.admin-route-loading * {
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    box-shadow 220ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+html[data-admin-theme="dark"] body {
+  --background: #0f172a;
+  --foreground: #e5e7eb;
+}
+
+html[data-admin-theme="dark"] .admin-theme-scope {
+  background: #0f172a !important;
+  color: #e5e7eb !important;
+}
+
+html[data-admin-theme="dark"] .admin-theme-scope .bg-white,
+html[data-admin-theme="dark"] .admin-route-loading .bg-white {
+  background-color: #111827 !important;
+}
+
+html[data-admin-theme="dark"] .admin-theme-scope .bg-\[\#F5F7FB\],
+html[data-admin-theme="dark"] .admin-theme-scope .bg-\[\#F8FAFC\],
+html[data-admin-theme="dark"] .admin-theme-scope .bg-\[\#F2F4F7\],
+html[data-admin-theme="dark"] .admin-theme-scope .bg-\[\#EEF2FF\],
+html[data-admin-theme="dark"] .admin-theme-scope .bg-\[\#F0EFFF\] {
+  background-color: #1f2937 !important;
+}
+
+html[data-admin-theme="dark"] .admin-theme-scope .bg-\[\#ECFDF3\] {
+  background-color: #052e16 !important;
+}
+
+html[data-admin-theme="dark"] .admin-theme-scope .border-\[\#E4E7EC\],
+html[data-admin-theme="dark"] .admin-theme-scope .border-\[\#EEF2F6\] {
+  border-color: #334155 !important;
+}
+
+html[data-admin-theme="dark"] .admin-theme-scope [class*="text-[#101828]"],
+html[data-admin-theme="dark"] .admin-theme-scope [class*="text-[#111827]"] {
+  color: #f8fafc !important;
+}
+
+html[data-admin-theme="dark"] .admin-theme-scope [class*="text-[#667085]"],
+html[data-admin-theme="dark"] .admin-theme-scope [class*="text-[#98A2B3]"] {
+  color: #cbd5e1 !important;
+}
+
+html[data-admin-theme="dark"] .admin-theme-scope input {
+  background-color: transparent !important;
+  color: #f8fafc !important;
+}
+
+html[data-admin-theme="dark"] .admin-route-loading .bg-white\/35 {
+  background-color: rgb(15 23 42 / 0.45) !important;
+}
+
+@keyframes route-progress {
+  0% {
+    transform: translateX(-120%);
+  }
+  50% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+
+.admin-login-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.13) 1px, transparent 1px),
+    linear-gradient(120deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+  background-size: 96px 96px, 96px 96px, 128px 128px;
+  transform: perspective(900px) rotateY(-22deg) rotateX(9deg) scale(1.18);
+  transform-origin: center;
 }
 
 @layer utilities {
